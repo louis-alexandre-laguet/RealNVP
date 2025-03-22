@@ -1,24 +1,24 @@
 # REAL NVP (Real-valued Non-Volume Preserving)
 
-REAL NVP est un modèle de **flow normalisant** publié en 2017 par **Laurent Dinh et al.**,  
-de l'équipe DeepMind chez Google. Il appartient à la famille des **modèles à flux normalisants**,  
-où une variable aléatoire complexe est transformée de manière bijective en une distribution  
-plus simple, généralement une gaussienne.
+REAL NVP is a **normalizing flow** model published in 2017 by **Laurent Dinh et al.**,  
+from the DeepMind team at Google. It belongs to the family of **normalizing flow models**,  
+where a complex random variable is transformed bijectively into a simpler distribution,  
+usually a Gaussian.
 
-Pour l'inférence, un échantillon est d'abord tiré depuis une distribution normale centrée réduite.  
-En appliquant les transformations inverses apprises par le modèle, on reconstruit ainsi une donnée réaliste  
-dans l'espace original. Ce processus est rapide et ne nécessite pas d'itérations successives  
-comme dans les modèles génératifs traditionnels.
+For inference, a sample is first drawn from a standard normal distribution.  
+By applying the inverse transformations learned by the model, a realistic data point is then reconstructed  
+in the original space. This process is fast and does not require iterative steps  
+as in traditional generative models.
 
-L'apprentissage de cette transformation repose sur des **coupling layers**, qui permettent de garantir  
-une inversion simple tout en maintenant une grande flexibilité dans la modélisation de la distribution.  
-Chaque coupling layer divise les données en deux parties :  
-- Une partie laissée inchangée
-- Une partie transformée de manière paramétrique en fonction de l'autre
+The learning of this transformation relies on **coupling layers**, which ensure  
+a simple inversion while maintaining great flexibility in modeling the distribution.  
+Each coupling layer divides the data into two parts:  
+- One part is left unchanged
+- One part is transformed parametrically based on the other
 
-Cette alternance de transformations assure qu’au fil des couches, **toutes les dimensions des données**  
-sont progressivement modifiées. De plus, elle permet un calcul efficace du jacobien, évitant ainsi  
-le coût exponentiel souvent associé aux modèles de densité explicite.
+This alternating transformation ensures that, over the layers, **all dimensions of the data**  
+are gradually modified. Additionally, it allows for an efficient calculation of the Jacobian, thus avoiding  
+the exponential cost often associated with explicit density models.
 
-L'entraînement de REAL NVP repose sur la **maximisation de la vraisemblance**,  
-permettant un apprentissage stable sans besoin de techniques adversariales.  
+The training of REAL NVP is based on **maximum likelihood maximization**,  
+enabling stable learning without the need for adversarial techniques.
